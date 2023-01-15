@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication;
 
 using WebAPI.Infrastructure.DB;
+using Domain;
 
 namespace Infrastructure;
 
@@ -28,24 +29,10 @@ public static class DI
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
         services.AddSingleton<IJWTTokenGenerator, JwtTokenGenerator>();
-        services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.Issuer, // configuration[JwtSettings.SectionName + ":Issuer"],
-                    ValidAudience = jwtSettings.Audience, // configuration[JwtSettings.SectionName + ":Audience"]
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
-                };
-            });
 
         // user ef core in memory db
         services.AddDbContext<DemoDBContext>(o => o.UseInMemoryDatabase("demo-db"));
-        services.AddScoped<IDbContext>(provider => (IDbContext)provider.GetService(typeof(DemoDBContext)));
+        services.AddScoped<IDbContext>(provider => provider.GetRequiredService<DemoDBContext>());
 
         services.AddScoped<DBGenerator>();
 
@@ -66,7 +53,23 @@ public static class DI
 
         // Apply policy to role
         services.AddAuthorization(options =>
-            options.AddPolicy("CanPurge", policy => policy.RequireRole("Admin")));
+            options.AddPolicy("CanPurge", policy => policy.RequireRole(UserRoles.Admin)));
+
+        services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings.Issuer, // configuration[JwtSettings.SectionName + ":Issuer"],
+                    ValidAudience = jwtSettings.Audience, // configuration[JwtSettings.SectionName + ":Audience"]
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
+                };
+            });
+
 
         return services;
     }

@@ -4,8 +4,8 @@ namespace Domain
     {
         public string Email { get; init; } = null!;
         public string Password { get; init; } = null!;
-        public string Role { get; init; } = UserRoles.User;
-        public string? Token { get; init; } = null;
+        public string Role { get; set; } = UserRoles.User;
+        public string? Token { get; set; } = null;
     }
 
     public static class UserRoles

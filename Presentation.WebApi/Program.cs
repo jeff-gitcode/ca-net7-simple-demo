@@ -1,8 +1,10 @@
 using Application;
+using Application.SPI;
 
 using Infrastructure;
 
 using Infrastructure.DB;
+using Infrastructure.Services;
 
 using Serilog;
 
@@ -19,6 +21,8 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 // Add different layer services to the container.
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 // builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
 builder.Services.AddControllers();
@@ -27,6 +31,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Seed Simple Demo Database with Role and Policy
+using (var scope = app.Services.CreateScope())
+{
+    var service = scope.ServiceProvider;
+
+    try
+    {
+        var context = service.GetRequiredService<DBGenerator>();
+        await context.InitializeAsync();
+    }
+    catch (Exception ex)
+    {
+        throw ex;
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -49,24 +69,12 @@ app.UseStaticFiles();
 
 app.UseAuthentication();
 
+// app.UseIdentityServer();
+
 app.UseAuthorization();
 
 app.MapControllers();
 
-// Seed Simple Demo Database with Role and Policy
-using (var scope = app.Services.CreateScope())
-{
-    var service = scope.ServiceProvider;
 
-    try
-    {
-        var context = service.GetRequiredService<DBGenerator>();
-        await context.InitializeAsync();
-    }
-    catch (Exception ex)
-    {
-        throw ex;
-    }
-}
 
 app.Run();

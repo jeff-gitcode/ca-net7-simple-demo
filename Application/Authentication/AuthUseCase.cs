@@ -8,6 +8,8 @@ using MapsterMapper;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace Application.Authentication
 {
     public class AuthUseCase : IAuthUseCase
@@ -47,6 +49,15 @@ namespace Application.Authentication
             var response = _mapper.Map<UserResponse>(result);
 
             return response;
+        }
+
+        public async Task<bool> Delete(string username)
+        {
+            var command = new DeleteCommand(username);
+
+            var result = await _mediator.Send(command);
+
+            return result;
         }
     }
 }

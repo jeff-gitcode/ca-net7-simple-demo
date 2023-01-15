@@ -12,7 +12,7 @@ namespace Infrastructure.DB
 {
     public interface IDbContext : IDisposable
     {
-        DbSet<UserDTO> Users { get; set; }
+        DbSet<UserDTO> Customer { get; set; }
 
         Task<int> SaveChangesAsync();
     }
@@ -23,7 +23,7 @@ namespace Infrastructure.DB
         {
         }
 
-        public DbSet<UserDTO> Users { get; set; }
+        public DbSet<UserDTO> Customer { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {

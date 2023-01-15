@@ -6,8 +6,9 @@ POST {{host}}/register HTTP/1.1
 content-type: application/json
 
 {
-    "email": "test@test.com",
-    "password": "1234",
+    "email": "john.doe@email.com",
+    "password": "P@ssword1",
+    "role": "User",
     "token":""
 }
 
@@ -26,11 +27,24 @@ content-type: application/json
 }
 
 ### Login with seed data
-# @name loginwithseed
+# @name loginwithseed (admin)
 POST {{host}}/login HTTP/1.1
 content-type: application/json
 
 {
-  "email": "john.doe@email.com",
-  "password": "password"
+  "email": "administrator@localhost",
+  "password": "P@ssword1"
+}
+
+### Get token
+@token = {{login.response.body.token}}
+
+### Delete action
+# @name delete
+DELETE {{host}}/delete HTTP/1.1
+content-type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "P@ssword1"
 }

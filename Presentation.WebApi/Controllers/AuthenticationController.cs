@@ -47,4 +47,12 @@ public class AuthenticationController : ApiController
         var user = await _authUseCase.Login(loginDTO);
         return Ok(user);
     }
+
+    [HttpDelete("delete")]
+    public async Task<ActionResult> Delete([FromBody] LoginDTO loginDTO)
+    {
+        var deleted = await _authUseCase.Delete(loginDTO.Email);
+        return Ok(deleted);
+    }
+
 }

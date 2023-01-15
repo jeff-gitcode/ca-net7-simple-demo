@@ -25,8 +25,8 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, LoginDTO>
     public async Task<LoginDTO?> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         // Check if user exists
-        var isExistingUser = await _identityService.IsExistingUser(request.tempUser.Email, request.tempUser.Password);
-        if (isExistingUser)
+        var user = await _identityService.GetUserAsync(request.tempUser.Email, request.tempUser.Password);
+        if (user != null)
         {
             throw new Exception("User already exists");
         }
@@ -42,6 +42,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, LoginDTO>
             {
                 Email = request.tempUser.Email,
                 Password = request.tempUser.Password,
+                Role = request.tempUser.Role,
                 Token = token
             };
 

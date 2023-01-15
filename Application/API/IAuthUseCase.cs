@@ -6,5 +6,6 @@ namespace Application.API
     {
         Task<UserResponse> Register(LoginDTO loginDTO);
         Task<UserResponse> Login(LoginDTO loginDTO);
+        Task<bool> Delete(string username);
     }
 }

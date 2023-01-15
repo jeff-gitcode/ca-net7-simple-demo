@@ -4,10 +4,12 @@ using Ardalis.GuardClauses;
 
 using Domain;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebApi.Controllers;
 
+// [AllowAnonymous]
 public class UsersController : ApiController
 {
     private readonly IUserUseCase _userUseCase;
@@ -19,6 +21,7 @@ public class UsersController : ApiController
         _userUseCase = userUseCase;
     }
 
+    [Authorize(Roles = UserRoles.Admin)]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
     {

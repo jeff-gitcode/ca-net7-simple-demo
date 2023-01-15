@@ -10,6 +10,8 @@ using Infrastructure.Authentication;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 public class IdentityService : IIdentityService
 {
@@ -19,11 +21,14 @@ public class IdentityService : IIdentityService
 
     private readonly IAuthorizationService _authorizationService;
 
-    public IdentityService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory, IAuthorizationService authorizationService)
+    private readonly ILogger<IdentityService> _logger;
+
+    public IdentityService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory, IAuthorizationService authorizationService, ILogger<IdentityService> logger)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
+        _logger = logger;
     }
 
     public async Task<bool> AddAsync(LoginDTO request)
@@ -32,6 +37,7 @@ public class IdentityService : IIdentityService
         {
             var user = new ApplicationUser()
             {
+                Id = Guid.NewGuid().ToString(),
                 UserName = request.Email,
                 Email = request.Email,
             };
@@ -53,20 +59,31 @@ public class IdentityService : IIdentityService
         }
     }
 
-    public async Task<bool> IsExistingUser(string username, string password)
+    public async Task<LoginDTO> GetUserAsync(string username, string? password)
     {
+        var users = await _userManager.Users.ToListAsync();
+        _logger.LogInformation("Users: {0}", users);
+
         var user = await _userManager.FindByNameAsync(username);
         if (user == null)
         {
-            return false;
+            return null;
         }
 
-        var result = await _userManager.CheckPasswordAsync(user, password);
-        if (!result)
+        var isSame = await _userManager.CheckPasswordAsync(user, password);
+        if (!isSame)
         {
-            return false;
+            return null;
         }
-        return result;
+
+        var userRole = await _userManager.GetRolesAsync(user);
+
+        return new LoginDTO
+        {
+            Email = user.Email,
+            Password = user.PasswordHash,
+            Role = userRole.FirstOrDefault()
+        };
     }
 
     public async Task<bool> IsInRoleAsync(string username, string role)
@@ -92,5 +109,17 @@ public class IdentityService : IIdentityService
         var result = await _authorizationService.AuthorizeAsync(principal, policyName);
 
         return result.Succeeded;
+    }
+
+    public async Task<bool> DeleteAsync(string username)
+    {
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+        {
+            return false;
+        }
+
+        await _userManager.DeleteAsync(user);
+        return true;
     }
 }

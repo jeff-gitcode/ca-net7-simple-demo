@@ -22,22 +22,17 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, LoginDTO>
     public async Task<LoginDTO> Handle(LoginQuery request, CancellationToken cancellationToken)
     {
         // Check if user exists
-        var isExisting = await _identityService.IsExistingUser(request.loginDTO.Email, request.loginDTO.Password);
-        if (!isExisting)
+        var user = await _identityService.GetUserAsync(request.loginDTO.Email, request.loginDTO.Password);
+        if (user == null)
         {
             throw new Exception("User does not exist or password is incorrect");
         }
 
         // Create token
-        var token = _jwtTokenGenerator.CreateToken(request.loginDTO);
-        var response = new LoginDTO
-        {
-            Email = request.loginDTO.Email,
-            Password = request.loginDTO.Password,
-            Token = token
-        };
+        var token = _jwtTokenGenerator.CreateToken(user);
+        user.Token = token;
 
-        return response;
+        return user;
     }
 }
 

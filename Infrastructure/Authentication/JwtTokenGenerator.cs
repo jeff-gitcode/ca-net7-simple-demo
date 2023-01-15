@@ -20,6 +20,7 @@ namespace Infrastructure.Authentication
             _configuration = configuration.Value;
             _dateTimeService = dateTimeService;
         }
+
         public string CreateToken(LoginDTO user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -30,8 +31,8 @@ namespace Infrastructure.Authentication
                 Audience = _configuration.Audience,
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    // new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.NameIdentifier, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role),
                     // new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName)
                 }),
                 Expires = _dateTimeService.UtcNow.AddMinutes(_configuration.ExpiryInMinutes),

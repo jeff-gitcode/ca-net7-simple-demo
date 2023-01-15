@@ -1,4 +1,5 @@
 using Domain;
+
 using Mapster;
 
 namespace Application.Authentication;

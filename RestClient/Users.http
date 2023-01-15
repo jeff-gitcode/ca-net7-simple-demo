@@ -1,15 +1,16 @@
 @host = http://localhost:5106/api/Users
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJlMjY0MWNkMi1kNGRhLTQxZTEtOGUwNi04MzcwMmUyNmI0ZGUiLCJlbWFpbCI6ImpvaG4uZG9lQGVtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiSm9obiBEb2UiLCJuYmYiOjE2NzM1NjY4NTQsImV4cCI6MTY3MzU3MDQ1NCwiaWF0IjoxNjczNTY2ODU0LCJpc3MiOiJqd3QiLCJhdWQiOiJqd3QifQ.8gyuXZtkOAORWQcojVzc0cIuiCkP5Fru8Lu9H7907L0
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbmlzdHJhdG9yQGxvY2FsaG9zdCIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY3MzgyNDA1OSwiZXhwIjoxNjczODI3NjU5LCJpYXQiOjE2NzM4MjQwNTksImlzcyI6Imp3dCIsImF1ZCI6Imp3dCJ9.-tO6jH8axvL70z8O3l5fhSziAQ1Y5YgMsw41zzTa9kQ
 
 # @name createUser
 POST {{host}} HTTP/1.1
 content-type: application/json
+Authorization: Bearer {{token}}
 
 {
   "id": "",
   "firstName": "John",
   "lastName": "Doe",
-  "email": "joh.doe@email.com",
+  "email": "john.doe@email.com",
   "password": "1234",
   "token": "1234"
 }
@@ -26,11 +27,13 @@ content-type: application/json
 ### GET USER BY ID
 # @name GetUserById
 GET {{host}}/{{commentId}} HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 ### UPDATE USER
 # @name UpdateUser
 PUT {{host}} HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {
@@ -44,5 +47,6 @@ content-type: application/json
 ### DELETE USER
 # @name DeleteUser
 DELETE {{host}}/{{commentId}} HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 

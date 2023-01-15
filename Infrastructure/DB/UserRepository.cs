@@ -22,21 +22,21 @@ public class UserRepository : IUserRepository
         await Task.CompletedTask;
 
         // return _users;
-        return _context.Users.ToList();
+        return _context.Customer.ToList();
     }
 
     public async Task<UserDTO> GetByIdAsync(string id)
     {
         await Task.CompletedTask;
 
-        return _context.Users.FirstOrDefault(x => x.Id == id);
+        return _context.Customer.FirstOrDefault(x => x.Id == id);
         // return _users.FirstOrDefault(x => x.Id.ToString() == id);
     }
 
     public async Task<UserDTO> AddAsync(UserDTO user)
     {
         user.Id = Guid.NewGuid().ToString();
-        _context.Users.Add(user);
+        _context.Customer.Add(user);
         var result = await _context.SaveChangesAsync();
 
         return user;
@@ -49,7 +49,7 @@ public class UserRepository : IUserRepository
 
     public async Task<UserDTO> UpdateAsync(UserDTO user)
     {
-        _context.Users.Update(user);
+        _context.Customer.Update(user);
         var result = await _context.SaveChangesAsync();
 
         return user;
@@ -62,7 +62,7 @@ public class UserRepository : IUserRepository
 
     public async Task<Unit> DeleteAsync(string id)
     {
-        _context.Users.Remove(_context.Users.FirstOrDefault(x => x.Id == id));
+        _context.Customer.Remove(_context.Customer.FirstOrDefault(x => x.Id == id));
         await _context.SaveChangesAsync();
 
         return Unit.Value;
@@ -101,6 +101,6 @@ public class UserRepository : IUserRepository
 
     public IEnumerable<UserDTO> FindWithSpecificationPattern(ISpecification<UserDTO> specification = null)
     {
-        return SpecificationEvaluator<UserDTO>.GetQuery(_context.Users.AsQueryable(), specification);
+        return SpecificationEvaluator<UserDTO>.GetQuery(_context.Customer.AsQueryable(), specification);
     }
 }
