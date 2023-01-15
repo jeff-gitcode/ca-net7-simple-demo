@@ -1,0 +1,36 @@
+@host = http://localhost:5106/api/Authentication
+
+### Register
+# @name register
+POST {{host}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "1234",
+    "token":""
+}
+
+### Login
+@commentId = {{register.response.body.id}}
+@username = {{register.response.body.email}}
+@password = {{register.response.body.password}}
+
+# @name login
+POST {{host}}/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "{{username}}",
+  "password": "{{password}}"
+}
+
+### Login with seed data
+# @name loginwithseed
+POST {{host}}/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "john.doe@email.com",
+  "password": "password"
+}

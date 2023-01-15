@@ -1,0 +1,5 @@
+@host = http://localhost:5106/api/Errors
+
+# @name Error
+GET {{host}} HTTP/1.1
+content-type: application/json

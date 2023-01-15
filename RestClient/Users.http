@@ -1,0 +1,48 @@
+@host = http://localhost:5106/api/Users
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJlMjY0MWNkMi1kNGRhLTQxZTEtOGUwNi04MzcwMmUyNmI0ZGUiLCJlbWFpbCI6ImpvaG4uZG9lQGVtYWlsLmNvbSIsInVuaXF1ZV9uYW1lIjoiSm9obiBEb2UiLCJuYmYiOjE2NzM1NjY4NTQsImV4cCI6MTY3MzU3MDQ1NCwiaWF0IjoxNjczNTY2ODU0LCJpc3MiOiJqd3QiLCJhdWQiOiJqd3QifQ.8gyuXZtkOAORWQcojVzc0cIuiCkP5Fru8Lu9H7907L0
+
+# @name createUser
+POST {{host}} HTTP/1.1
+content-type: application/json
+
+{
+  "id": "",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "joh.doe@email.com",
+  "password": "1234",
+  "token": "1234"
+}
+
+### GET ALL USERS
+
+@commentId = {{createUser.response.body.id}}
+
+# @name GetUsers
+GET {{host}} HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+
+### GET USER BY ID
+# @name GetUserById
+GET {{host}}/{{commentId}} HTTP/1.1
+content-type: application/json
+
+### UPDATE USER
+# @name UpdateUser
+PUT {{host}} HTTP/1.1
+content-type: application/json
+
+{
+    "id": "{{commentId}}",
+    "email": "test@test.com",
+    "password": "1234",
+    "firstName": "John update",
+    "lastName": "Doe"
+}
+
+### DELETE USER
+# @name DeleteUser
+DELETE {{host}}/{{commentId}} HTTP/1.1
+content-type: application/json
+
