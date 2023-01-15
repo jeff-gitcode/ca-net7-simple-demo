@@ -246,7 +246,9 @@ Authorization: Bearer <token>
 dotnet add .\Infrastructure\ package Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
-# Role-based Authorization
+# Authorization
+
+## Role-based Authorization
 
 - Roles are exposed to the developer through the IsInRole method on the ClaimsPrincipal class.
 - AddRoles must be added to Role services.
@@ -258,7 +260,7 @@ dotnet add .\Infrastructure\ package Microsoft.AspNetCore.ApiAuthorization.Ident
 dotnet add .\Infrastructure\ package Microsoft.AspNetCore.Identity.EntityFrameworkCore
 ```
 
-# Policy-based Authorization
+## Policy-based Authorization
 
 - Use IAuthorizationService, [Authorize(Policy = "Something")], or RequireAuthorization("Something") for authorization.
 - AuthorizationBehaviour.cs
