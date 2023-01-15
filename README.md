@@ -1,4 +1,4 @@
-# Clean Architecture .Net Core 7 Simple Demo
+# Clean Architecture .Net Core 7 Simple Demo [In Progress]
 
 ## Tech Stack
 
