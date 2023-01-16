@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Application.API;
+using Application.Interface.API;
 using Application.Authentication;
-using Application.SPI;
+using Application.Interface.SPI;
 using Application.Users;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;

@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.API
+namespace Application.Interface.API
 {
     public interface IAuthUseCase
     {

@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.SPI
+namespace Application.Interface.SPI
 {
     public interface IJWTTokenGenerator
     {

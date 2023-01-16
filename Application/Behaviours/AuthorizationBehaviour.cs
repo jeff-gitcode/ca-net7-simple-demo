@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-using Application.SPI;
+using Application.Interface.SPI;
 
 using MediatR;
 

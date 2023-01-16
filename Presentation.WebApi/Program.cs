@@ -1,5 +1,5 @@
 using Application;
-using Application.SPI;
+using Application.Interface.SPI;
 
 using Infrastructure;
 
@@ -64,6 +64,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHsts();
 }
 
 // Log all requests

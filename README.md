@@ -76,7 +76,12 @@ $ dotnet new classlib -o Domain
 
 ```dash
 $ dotnet sln add (ls -r \*\*\*.csproj)
+
+# build project
 $ dotnet build
+
+# restore package
+$ dotnet restore
 ```
 
 # Add reference to projects
@@ -371,6 +376,11 @@ $ puml-gen .\ generatedPuml -dir -execludePaths bin,obj,Properties -createAssoci
 Then, Ctrl+Shift+P and select the PlanUml: Export Workspace Diagramsoption.
 ```
 
+## Security
+
+- Https
+- CORS
+
 ## Health Check
 
 ```dash
@@ -379,6 +389,37 @@ $ dotnet add .\Infrastructure\ package Microsoft.Extensions.Diagnostics.HealthCh
 $ dotnet add .\Infrastructure\ package Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 
 http://localhost:5106/health
+```
+
+## Unit Tests
+
+- .net core test explorer
+  ![alt text](./Doc/test-explorer.JPG)
+
+```dash
+$ dotnet new xunit -o UnitTests
+
+# Add to sln
+$ dotnet sln add .\UnitTests\UnitTests.csproj
+
+# reference to other projects
+$ dotnet add .\UnitTests\ reference .\Presentation.WebApi\
+$ dotnet add .\UnitTests\ reference .\Application\
+$ dotnet add .\UnitTests\ reference .\Domain\
+$ dotnet add .\UnitTests\ reference .\Infrastructure\
+
+$ dotnet test
+
+# Moq
+$ dotnet add .\UnitTests\ package Moq
+
+# FluentAssertion
+$ dotnet add .\UnitTests\ package FluentAssertions
+
+# AutoFixture
+$ dotnet add .\UnitTests\ package AutoFixture
+$ dotnet add .\UnitTests\ package AutoFixture.AutoMoq
+$ dotnet add .\UnitTests\ package AutoFixture.Xunit2
 ```
 
 # TODO

@@ -1,6 +1,6 @@
 using System.Security.Principal;
 
-using Application.SPI;
+using Application.Interface.SPI;
 
 using Domain;
 

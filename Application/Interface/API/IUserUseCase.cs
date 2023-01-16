@@ -1,7 +1,8 @@
 ﻿using Domain;
+
 using MediatR;
 
-namespace Application.API;
+namespace Application.Interface.API;
 
 public interface IUserUseCase
 {

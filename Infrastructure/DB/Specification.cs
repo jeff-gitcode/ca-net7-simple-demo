@@ -1,7 +1,7 @@
 
 using System.Linq.Expressions;
 
-using Application.SPI;
+using Application.Interface.SPI;
 
 using Microsoft.EntityFrameworkCore;
 

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-using Application.SPI;
+using Application.Interface.SPI;
 
 using Infrastructure.Authentication;
 using Infrastructure.DB;

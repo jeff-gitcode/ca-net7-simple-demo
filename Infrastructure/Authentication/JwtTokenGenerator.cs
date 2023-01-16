@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-using Application.SPI;
+using Application.Interface.SPI;
 
 using Domain;
 

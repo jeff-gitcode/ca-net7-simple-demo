@@ -1,4 +1,5 @@
-﻿using Application.SPI;
+﻿using Application.Interface.SPI;
+
 using MediatR;
 
 namespace Application.Users;

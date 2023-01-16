@@ -2,7 +2,7 @@
 
 using MediatR;
 
-namespace Application.SPI;
+namespace Application.Interface.SPI;
 
 public interface IUserRepository
 {
