@@ -1,6 +1,6 @@
 # Clean Architecture .Net Core 7 Simple Demo
 
-![alt text](./Doc/Client-Server-Authentication.JPG)
+![alt text](./Doc/Client-Server-Authentication.jpg)
 
 ![alt text](./Doc/id-microservice-auth.png)
 
