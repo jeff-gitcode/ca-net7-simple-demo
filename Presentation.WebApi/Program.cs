@@ -28,6 +28,17 @@ builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+//Enable CORS//Cross site resource sharing
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        b => b.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+    );
+});
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -62,10 +73,14 @@ app.UseSerilogRequestLogging();
 
 app.UseExceptionHandler("/error");
 
+// Enforce HTTPS
 app.UseHttpsRedirection();
 
 // The ASP.NET Core templates call UseStaticFiles before calling UseAuthorization.
 app.UseStaticFiles();
+
+// Enable CORS
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 
@@ -75,6 +90,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
+// mapping health check endpoint
+app.MapHealthChecks("/health");
 
 app.Run();

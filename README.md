@@ -371,6 +371,16 @@ $ puml-gen .\ generatedPuml -dir -execludePaths bin,obj,Properties -createAssoci
 Then, Ctrl+Shift+P and select the PlanUml: Export Workspace Diagramsoption.
 ```
 
+## Health Check
+
+```dash
+$ dotnet add .\Presentation.WebApi\ package Microsoft.Extensions.Diagnostics.HealthChecks
+$ dotnet add .\Infrastructure\ package Microsoft.Extensions.Diagnostics.HealthChecks
+$ dotnet add .\Infrastructure\ package Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
+
+http://localhost:5106/health
+```
+
 # TODO
 
 - FastEndpoints

@@ -70,6 +70,9 @@ public static class DI
                 };
             });
 
+        // adding health check service.
+        services.AddHealthChecks()
+                .AddDbContextCheck<DemoDBContext>();
 
         return services;
     }
