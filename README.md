@@ -400,6 +400,8 @@ http://localhost:5106/health
 - .net core test explorer
   ![alt text](./Doc/test-explorer.JPG)
 
+  ![alt text](./Doc/unit-test.JPG)
+
 ```dash
 $ dotnet new xunit -o UnitTests
 
@@ -424,6 +426,13 @@ $ dotnet add .\UnitTests\ package FluentAssertions
 $ dotnet add .\UnitTests\ package AutoFixture
 $ dotnet add .\UnitTests\ package AutoFixture.AutoMoq
 $ dotnet add .\UnitTests\ package AutoFixture.Xunit2
+```
+
+## Integration Test
+
+```dash
+# TestServer
+$ dotnet add .\UnitTests\ package Microsoft.AspNetCore.TestHost
 ```
 
 # TODO
