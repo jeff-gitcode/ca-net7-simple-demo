@@ -430,9 +430,14 @@ $ dotnet add .\UnitTests\ package AutoFixture.Xunit2
 
 ## Integration Test
 
+![alt text](./Doc/integration-test.JPG)
+
 ```dash
 # TestServer
 $ dotnet add .\UnitTests\ package Microsoft.AspNetCore.TestHost
+
+# WebApplicationFactory (bootstap TestServer)
+$ dotnet add .\UnitTests\ package Microsoft.AspNetCore.Mvc.Testing
 ```
 
 # TODO
