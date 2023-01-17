@@ -115,6 +115,8 @@ http://localhost:5106/swagger/index.html
 
 # Create Rest Client
 
+![alt text](./Doc/rest-client.gif)
+
 ![alt text](./Doc/login-debug.gif)
 
 ```dash
@@ -340,9 +342,11 @@ $ dotnet add .\Infrastructure\ package Ardalis.GuardClauses
 $ dotnet add .\Presentation.WebApi\ package Ardalis.GuardClauses
 ```
 
-# BaseEntity / ValueObject / AggregateRoot
+# BaseEntity / ValueObject / AggregateRoot /Record
 
 - BaseEntity.cs
+
+- Records add another way to define types. You use class definitions to create object-oriented hierarchies that focus on the responsibilities and behavior of objects. You create struct types for data structures that store data and are small enough to copy efficiently. You create record types when you want value-based equality and comparison, don't want to copy values, and want to use reference variables. You create record struct types when you want the features of records for a type that is small enough to copy efficiently.
 
 # Fluent API
 

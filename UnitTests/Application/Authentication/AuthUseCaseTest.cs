@@ -37,7 +37,7 @@ namespace UnitTests.Application.Authentication
 
             _mapper.Setup(x => x.Map<UserResponse>(It.IsAny<LoginDTO>())).Returns(userResponse);
 
-            var result = _authUseCase.Register(loginDTO);
+            var result = _authUseCase.RegisterAsync(loginDTO);
 
             result.Result.Should().Be(userResponse);
         }
@@ -49,7 +49,7 @@ namespace UnitTests.Application.Authentication
 
             _mapper.Setup(x => x.Map<UserResponse>(It.IsAny<LoginDTO>())).Returns(userResponse);
 
-            var result = _authUseCase.Login(loginDTO);
+            var result = _authUseCase.LoginAsync(loginDTO);
 
             result.Result.Should().Be(userResponse);
         }
@@ -59,7 +59,7 @@ namespace UnitTests.Application.Authentication
         {
             _mediator.Setup(x => x.Send(It.IsAny<DeleteCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(true);
 
-            var result = _authUseCase.Delete(username);
+            var result = _authUseCase.DeleteAsync(username);
 
             result.Result.Should().Be(true);
         }

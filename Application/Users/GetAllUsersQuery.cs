@@ -20,4 +20,3 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<
         return await _userRepository.GetAllAsync();
     }
 }
-

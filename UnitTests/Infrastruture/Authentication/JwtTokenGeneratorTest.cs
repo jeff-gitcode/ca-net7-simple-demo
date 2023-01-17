@@ -55,8 +55,19 @@ public class JwtTokenGeneratorTest
 
     [Theory]
     [InlineData("test", "test")]
-    public void JwtTokenGenerator_Should_ReturnTokenWithClaims(string email, string password)
+    public void JwtTokenGenerator_Should_ReturnTokenWithClaimsAndAudience(string email, string password)
     {
+        var request = new LoginDTO { Email = email, Password = password };
+
+
+        _dateTimeService.Setup(x => x.UtcNow).Returns(DateTime.UtcNow);
+
+        var result = _jwtTokenGenerator.CreateToken(request);
+
+        var jwt = _jwtTokenGenerator.ValidateToken(result);
+
+        jwt.Audiences.FirstOrDefault().Should().Be("test");
+        jwt.Issuer.Should().Be("test");
 
     }
 

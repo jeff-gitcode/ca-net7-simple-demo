@@ -26,7 +26,7 @@ namespace Application.Authentication
             _mapper = mapper;
         }
 
-        public async Task<UserResponse> Register(LoginDTO loginDTO)
+        public async Task<UserResponse> RegisterAsync(LoginDTO loginDTO)
         {
             var command = new RegisterCommand(loginDTO);
             var result = await _mediator.Send(command);
@@ -40,7 +40,7 @@ namespace Application.Authentication
             // return await _authenticationService.Register(userDTO);
         }
 
-        public async Task<UserResponse> Login(LoginDTO loginDTO)
+        public async Task<UserResponse> LoginAsync(LoginDTO loginDTO)
         {
             var query = new LoginQuery(loginDTO);
 
@@ -51,7 +51,7 @@ namespace Application.Authentication
             return response;
         }
 
-        public async Task<bool> Delete(string username)
+        public async Task<bool> DeleteAsync(string username)
         {
             var command = new DeleteCommand(username);
 

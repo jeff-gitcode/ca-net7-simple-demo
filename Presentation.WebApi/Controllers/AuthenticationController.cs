@@ -30,7 +30,7 @@ public class AuthenticationController : ApiController
         // {
         //     return BadRequest(result.Errors);
         // }
-        var user = await _authUseCase.Register(loginDTO);
+        var user = await _authUseCase.RegisterAsync(loginDTO);
         return Ok(user);
     }
 
@@ -44,14 +44,14 @@ public class AuthenticationController : ApiController
         //     return BadRequest(result.Errors);
         // }
         // var token = _tokenService.GenerateToken(user);
-        var user = await _authUseCase.Login(loginDTO);
+        var user = await _authUseCase.LoginAsync(loginDTO);
         return Ok(user);
     }
 
     [HttpDelete("delete")]
     public async Task<ActionResult> Delete([FromBody] LoginDTO loginDTO)
     {
-        var deleted = await _authUseCase.Delete(loginDTO.Email);
+        var deleted = await _authUseCase.DeleteAsync(loginDTO.Email);
         return Ok(deleted);
     }
 
