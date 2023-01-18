@@ -18,10 +18,6 @@ using WebMotions.Fake.Authentication.JwtBearer;
 public class UsersController_IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
-    private const string Username = "Test";
-    private const string Password = "test";
-
-    private readonly string base64EncodedAuthenticationString = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{Username}:{Password}"));
     private UserDTO _currentUser;
     public UsersController_IntegrationTest(WebApplicationFactory<Program> factory)
     {

@@ -432,12 +432,17 @@ $ dotnet add .\UnitTests\ package AutoFixture.Xunit2
 
 ![alt text](./Doc/integration-test.JPG)
 
+![alt text](./Doc/integration-test1.JPG)
+
 ```dash
 # TestServer
 $ dotnet add .\UnitTests\ package Microsoft.AspNetCore.TestHost
 
 # WebApplicationFactory (bootstap TestServer)
 $ dotnet add .\UnitTests\ package Microsoft.AspNetCore.Mvc.Testing
+
+# Fake Authentication
+$ dotnet add .\UnitTests\ package WebMotions.Fake.Authentication.JwtBearer
 ```
 
 # TODO
