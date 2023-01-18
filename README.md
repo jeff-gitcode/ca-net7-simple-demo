@@ -26,6 +26,7 @@
 - [x] EF Core (Seed, InMemory DB)
 - [x] Specification Pattern
 - [x] Security(Https, CORS)
+- [x] Swagger / ApiConvention
 - [x] Health Check
 - [x] Caching
 - [x] Debug vs in vscode
