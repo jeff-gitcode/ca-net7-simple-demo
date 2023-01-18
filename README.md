@@ -16,7 +16,7 @@
 - [x] Authorization (Role based/ Policy Based)
 - [x] Options Pattern
 - [x] User-secrets
-- [x] Error handler
+- [x] Error handling
 - [x] Mapster Mapper
 - [x] Editor Config
 - [x] Fluent Validation
@@ -25,7 +25,11 @@
 - [x] Logging (Serilog , Seq server)
 - [x] EF Core (Seed, InMemory DB)
 - [x] Specification Pattern
+- [x] Security(Https, CORS)
+- [x] Health Check
 - [x] Debug vs in vscode
+- [x] Unit Tests in vscode
+- [x] Integration Test in vscode
 - [] FastEndpoints
 - [] Minimal APIs
 - [] Scrutor
@@ -216,7 +220,13 @@ $ dotnet add .\Application\ package Mapster
 $ dotnet add .\Application\ package Mapster.DependencyInjection
 ```
 
-# ErrorOr
+# Error Handling
+
+- ProblemDetails
+
+  ![alt text](./Doc/error-handling.JPG)
+
+- ErrorOr
 
 ```dash
 $ dotnet add .\Application\ package ErrorOr

@@ -7,7 +7,7 @@ namespace Presentation.WebApi.Controllers
     [AllowAnonymous] // Don't apply authorization to this controller
     public class ErrorsController : ApiController
     {
-        // [Route("error")]
+        [Route("/error")]
         [HttpGet]
         public async Task<IActionResult> Error()
         {

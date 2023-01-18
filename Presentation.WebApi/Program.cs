@@ -6,6 +6,8 @@ using Infrastructure;
 using Infrastructure.DB;
 using Infrastructure.Services;
 
+using Presentation.WebApi.Filter;
+
 using Serilog;
 
 //create the logger and setup your sinks, filters and properties
@@ -24,8 +26,8 @@ builder.Services.ConfigureApplicationServices();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
-// builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
+// builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
