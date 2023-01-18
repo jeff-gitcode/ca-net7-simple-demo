@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication;
 
 using WebAPI.Infrastructure.DB;
 using Domain;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Infrastructure;
 
@@ -33,6 +34,10 @@ public static class DI
         // user ef core in memory db
         services.AddDbContext<DemoDBContext>(o => o.UseInMemoryDatabase("demo-db"));
         services.AddScoped<IDbContext>(provider => provider.GetRequiredService<DemoDBContext>());
+
+        // memory cache
+        services.AddMemoryCache();
+        services.AddScoped<ICacheUsersService, MemoryCacheUsersService>();
 
         services.AddScoped<DBGenerator>();
 

@@ -27,6 +27,7 @@
 - [x] Specification Pattern
 - [x] Security(Https, CORS)
 - [x] Health Check
+- [x] Caching
 - [x] Debug vs in vscode
 - [x] Unit Tests in vscode
 - [x] Integration Test in vscode
@@ -183,11 +184,15 @@ $ dotnet watch run --project .\Presentation.WebApi\
 
 ```
 
-# Swagger
+# Swagger / ApiConvention
 
-http://localhost:5106/swagger
+- Swagger
+  http://localhost:5106/swagger
 
 ![alt text](./Doc/swagger.JPG)
+
+- Api Convention
+  ![alt text](./Doc/api-convention.JPG)
 
 # CQRS and MediatR
 
@@ -394,6 +399,12 @@ Then, Ctrl+Shift+P and select the PlanUml: Export Workspace Diagramsoption.
 
 - Https
 - CORS
+
+## Caching
+
+```dash
+$ dotnet add .\Infrastructure\ package Microsoft.Extensions.Caching.Memory
+```
 
 ## Health Check
 

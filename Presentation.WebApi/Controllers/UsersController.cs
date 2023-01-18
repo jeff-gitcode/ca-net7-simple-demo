@@ -22,6 +22,8 @@ public class UsersController : ApiController
     }
 
     [Authorize(Roles = UserRoles.Admin)]
+    [ApiConventionMethod(typeof(DefaultApiConventions),
+             nameof(DefaultApiConventions.Get))]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
     {
@@ -30,6 +32,8 @@ public class UsersController : ApiController
     }
 
     [HttpGet("{id}")]
+    [ApiConventionMethod(typeof(DefaultApiConventions),
+             nameof(DefaultApiConventions.Get))]
     public async Task<ActionResult<UserDTO>> GetUserById(string id)
     {
         var user = await _userUseCase.GetUserById(id);
@@ -37,6 +41,7 @@ public class UsersController : ApiController
     }
 
     [HttpPost]
+    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Create))]
     public async Task<ActionResult<UserDTO>> CreateUser(UserDTO tempUser)
     {
         var user = await _userUseCase.CreateUser(tempUser);
@@ -44,6 +49,7 @@ public class UsersController : ApiController
     }
 
     [HttpPut]
+    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Update))]
     public async Task<ActionResult<UserDTO>> UpdateUser(UserDTO tempUser)
     {
         var user = await _userUseCase.UpdateUser(tempUser);
@@ -51,6 +57,7 @@ public class UsersController : ApiController
     }
 
     [HttpDelete("{id}")]
+    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     public async Task<ActionResult> DeleteUser(string id)
     {
         await _userUseCase.DeleteUser(id);
