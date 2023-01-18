@@ -102,20 +102,20 @@ public class DBGenerator
 
             // Default data
             // Seed, if necessary
-            // if (!_context.Customer.Any())
-            // {
-            //     _context.Customer.Add(new UserDTO
-            //     {
-            //         Id = Guid.NewGuid().ToString(),
-            //         FirstName = "John",
-            //         LastName = "Doe",
-            //         Email = "john.doe@email.com",
-            //         Password = "password",
-            //         Token = "token"
-            //     });
+            if (!_context.Customer.Any())
+            {
+                _context.Customer.Add(new UserDTO
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "john.doe@email.com",
+                    Password = "password",
+                    Token = "token"
+                });
 
-            //     await _context.SaveChangesAsync();
-            // }
+                await _context.SaveChangesAsync();
+            }
         }
         catch (System.Exception ex)
         {
