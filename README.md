@@ -469,6 +469,8 @@ $ dotnet add .\UnitTests\ package WebMotions.Fake.Authentication.JwtBearer
 
 ## Minimal API / Carter
 
+![alt text](./Doc/minimal-api.JPG)
+
 http://localhost:5106/api/minimal/Users
 
 ```dash
