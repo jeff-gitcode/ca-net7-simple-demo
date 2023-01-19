@@ -32,8 +32,8 @@
 - [x] Debug vs in vscode
 - [x] Unit Tests in vscode
 - [x] Integration Test in vscode
+- [x] Minimal APIs
 - [] FastEndpoints
-- [] Minimal APIs
 - [] Scrutor
 
 # Vscode Extensions
@@ -467,7 +467,16 @@ $ dotnet add .\UnitTests\ package Microsoft.AspNetCore.Mvc.Testing
 $ dotnet add .\UnitTests\ package WebMotions.Fake.Authentication.JwtBearer
 ```
 
+## Minimal API / Carter
+
+http://localhost:5106/api/minimal/Users
+
+```dash
+$ dotnet add .\Presentation.WebApi\ package MinimalApi.Endpoint
+
+$ dotnet add .\Presentation.WebApi\ package carter
+```
+
 # TODO
 
 - FastEndpoints
-- Minimal APIs

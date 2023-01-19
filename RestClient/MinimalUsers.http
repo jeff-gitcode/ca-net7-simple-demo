@@ -1,0 +1,52 @@
+@host = http://localhost:5106/api/minimal/Users
+@token=ayJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbmlzdHJhdG9yQGxvY2FsaG9zdCIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY3NDEwOTkwNCwiZXhwIjoxNjc0MTEzNTA0LCJpYXQiOjE2NzQxMDk5MDQsImlzcyI6Imp3dCIsImF1ZCI6Imp3dCJ9.C-GJtQt6xf5BCcNGTFI2XKQUNyvlIYtWCupVeNEio9k
+
+# @name createUser
+POST {{host}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": "",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@email.com",
+  "password": "1234",
+  "token": "1234"
+}
+
+### GET ALL USERS
+
+@commentId = {{createUser.response.body.id}}
+
+# @name GetUsers
+GET {{host}} HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+
+### GET USER BY ID
+# @name GetUserById
+GET {{host}}/{{commentId}} HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+
+### UPDATE USER
+# @name UpdateUser
+PUT {{host}} HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+    "id": "{{commentId}}",
+    "email": "test@test.com",
+    "password": "1234",
+    "firstName": "John update",
+    "lastName": "Doe"
+}
+
+### DELETE USER
+# @name DeleteUser
+DELETE {{host}}/{{commentId}} HTTP/1.1
+Authorization: Bearer {{token}}
+content-type: application/json
+

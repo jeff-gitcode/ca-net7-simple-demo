@@ -1,6 +1,8 @@
 using Application;
 using Application.Interface.SPI;
 
+using Carter;
+
 using Infrastructure;
 
 using Infrastructure.DB;
@@ -42,6 +44,8 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCarter();
 
 var app = builder.Build();
 
@@ -92,6 +96,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapCarter();
 
 // mapping health check endpoint
 app.MapHealthChecks("/health");
