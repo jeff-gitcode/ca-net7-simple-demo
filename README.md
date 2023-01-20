@@ -482,6 +482,19 @@ $ dotnet add .\Presentation.WebApi\ package carter
 
 ## Grpc Json Transcoding
 
+```dash
+# create grpc project
+$ dotnet new grpc -o Presentation.Grpc
+
+# add project to sln
+$ dotnet sln add .\Presentation.Grpc\Presentation.Grpc.csproj
+
+# reference to application
+$ dotnet add .\Presentation.Grpc\ reference .\Application\
+
+# run project
+$ dotnet watch run --project .\Presentation.Grpc\
+```
 
 # TODO
 
