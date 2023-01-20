@@ -32,7 +32,8 @@
 - [x] Debug vs in vscode
 - [x] Unit Tests in vscode
 - [x] Integration Test in vscode
-- [x] Minimal APIs
+- [x] Minimal APIs / Carter
+- [x] GRPC Json Transcoding
 - [] FastEndpoints
 - [] Scrutor
 
@@ -478,6 +479,9 @@ $ dotnet add .\Presentation.WebApi\ package MinimalApi.Endpoint
 
 $ dotnet add .\Presentation.WebApi\ package carter
 ```
+
+## Grpc Json Transcoding
+
 
 # TODO
 
