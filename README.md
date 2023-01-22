@@ -492,6 +492,11 @@ $ dotnet sln add .\Presentation.Grpc\Presentation.Grpc.csproj
 # reference to application
 $ dotnet add .\Presentation.Grpc\ reference .\Application\
 
+# add grpc package
+$ dotnet add .\Presentation.Grpc\ package Grpc.AspNetCore.Server.Reflection
+$ dotnet add .\Presentation.Grpc\ package Microsoft.AspNetCore.Grpc.JsonTranscoding
+$ dotnet add .\Presentation.Grpc\ package Microsoft.AspNetCore.Grpc.Swagger
+
 # run project
 $ dotnet watch run --project .\Presentation.Grpc\
 ```
