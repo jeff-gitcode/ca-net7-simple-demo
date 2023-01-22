@@ -54,6 +54,7 @@
 - vs browser
 - JWT-Decoder
 - VIM
+- gRPC Clicker
 
 // multiple editing ctrl+F, then alt+enter
 
@@ -489,17 +490,34 @@ $ dotnet new grpc -o Presentation.Grpc
 # add project to sln
 $ dotnet sln add .\Presentation.Grpc\Presentation.Grpc.csproj
 
-# reference to application
+# reference to application & infrastructure
 $ dotnet add .\Presentation.Grpc\ reference .\Application\
+$ dotnet add .\Presentation.Grpc\ reference .\Infrastructure\
 
 # add grpc package
 $ dotnet add .\Presentation.Grpc\ package Grpc.AspNetCore.Server.Reflection
 $ dotnet add .\Presentation.Grpc\ package Microsoft.AspNetCore.Grpc.JsonTranscoding
 $ dotnet add .\Presentation.Grpc\ package Microsoft.AspNetCore.Grpc.Swagger
 
+# add other packages, please follow with Presentation.WebApi.csproj
+
+# proto schema
+./Protos
+
 # run project
 $ dotnet watch run --project .\Presentation.Grpc\
+
 ```
+
+## gRPC JSON Transcoding
+
+![alt text](./Doc/grpc-swagger.JPG)
+
+## gRPC Clicker
+
+![alt text](./Doc/grpc-clicker1.JPG)
+
+![alt text](./Doc/grpc-clicker.JPG)
 
 # TODO
 
