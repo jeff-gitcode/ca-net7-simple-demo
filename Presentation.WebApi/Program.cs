@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+
 using Application;
 using Application.Interface.SPI;
 
@@ -24,8 +26,11 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 
 // Add different layer services to the container.
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+
 builder.Services.ConfigureApplicationServices();
+
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
