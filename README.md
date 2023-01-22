@@ -504,9 +504,16 @@ $ dotnet add .\Presentation.Grpc\ package Microsoft.AspNetCore.Grpc.Swagger
 # proto schema
 ./Protos
 
-# run project
+# Grpc.client
+$ dotnet add .\Grpc.Client\ package Google.Protobuf
+$ dotnet add .\Grpc.Client\ package Grpc.Net.ClientFactory
+$ dotnet add .\Grpc.Client\ package Grpc.Tools
+
+# run gRPC server project
 $ dotnet watch run --project .\Presentation.Grpc\
 
+# run gRPC Client project (for test only)
+$ dotnet watch run --project .\Grpc.Client\
 ```
 
 ## gRPC JSON Transcoding
